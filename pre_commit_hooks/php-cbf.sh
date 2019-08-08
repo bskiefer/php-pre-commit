@@ -24,8 +24,9 @@ phpcbf_local_exec="phpcbf.phar"
 phpcbf_command="php $phpcbf_local_exec"
 
 # Check vendor/bin/phpunit
-phpcbf_vendor_command="/Users/brandonkiefer/.composer/vendor/bin/phpcbf"
+phpcbf_vendor_command="vendor/bin/phpcbf"
 phpcbf_global_command="phpcbf"
+echo 
 if [ -f "$phpcbf_vendor_command" ]; then
 	phpcbf_command=$phpcbf_vendor_command
 else
@@ -36,7 +37,7 @@ else
             phpcbf_command=$phpcbf_command
         else
             echo "No valid PHP Code Beautifier and Fixer executable found! Please have one available as either $phpcbf_vendor_command, $phpcbf_global_command or $phpcbf_local_exec"
-            which phpcbf
+            echo 'which phpcbf'
 	    exit 1
         fi
     fi
