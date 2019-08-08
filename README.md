@@ -25,7 +25,6 @@ Just add to your `.pre-commit-config.yaml` file with the following
 ## php-lint
 
 ```yaml
-<<<<<<< HEAD
 - repo: git@github.com:bskiefer/pre-commit-php.git
   sha: 1.1.0
   hooks:
