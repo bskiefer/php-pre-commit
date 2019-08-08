@@ -24,7 +24,7 @@ phpcbf_local_exec="phpcbf.phar"
 phpcbf_command="php $phpcbf_local_exec"
 
 # Check vendor/bin/phpunit
-phpcbf_vendor_command="~/.composer/vendor/bin/phpcbf"
+phpcbf_vendor_command="/Users/$USER/.composer/vendor/bin/phpcbf"
 phpcbf_global_command="phpcbf"
 echo 
 if [ -f "$phpcbf_vendor_command" ]; then
