@@ -36,6 +36,7 @@ else
         if [ -f "$phpcbf_local_exec" ]; then
             phpcbf_command=$phpcbf_command
         else
+	    echo "Failed!"
             echo "No valid PHP Code Beautifier and Fixer executable found! Please have one available as either $phpcbf_vendor_command, $phpcbf_global_command or $phpcbf_local_exec"
             phpcbf
 	    exit 1
