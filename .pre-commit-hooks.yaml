@@ -40,3 +40,19 @@
   entry: pre_commit_hooks/php-cs-fixer.sh
   language: script
   files: \.php$
+
+- id: composer-normalize-fix
+  name: Composer Formatter
+  description: Check for valid composer.json and format
+  entry: pre_commit_hooks/composer.sh
+  language: script
+  files: composer.json
+  args: [normalize --no-update-lock]
+
+- id: composer-validate
+  name: Composer Formatters & Validator
+  description: Check for valid composer.json, composer.lock, and formatting
+  entry: pre_commit_hooks/composer.sh
+  language: script
+  files: composer.json
+  args: [validate]
