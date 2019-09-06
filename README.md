@@ -1,4 +1,4 @@
-# Hootsuite - PHP Pre-commit Hooks
+# Various - PHP Pre-commit Hooks
 
 Pre-commit scripts appropiate for *any* PHP project. These hooks are made as custom plugins under the [pre-commit](http://pre-commit.com/#new-hooks) git hook framework.
 
@@ -11,6 +11,8 @@ Just add to your `.pre-commit-config.yaml` file with the following
   sha: 1.1.0
   hooks:
   - id: php-lint
+  - id: composer-normalize-fix
+  - id: composer-validate
   - id: php-unit
   - id: php-cs
     files: \.(php)$
