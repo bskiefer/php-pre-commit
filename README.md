@@ -8,8 +8,9 @@ Just add to your `.pre-commit-config.yaml` file with the following
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
+  - id: blade-formatter
   - id: php-lint
   - id: composer-normalize-fix
   - id: composer-validate
@@ -24,11 +25,23 @@ Just add to your `.pre-commit-config.yaml` file with the following
 
 # Supported Hooks
 
+## blade-formatter
+
+```yaml
+- repo: git@github.com:bskiefer/pre-commit-php.git
+  sha: 1.6
+  hooks:
+  - id:  blade-formatter
+    args: [--write]
+```
+
+A bash script that runs `php -l` against stage files that are php. Assumes `php` is a global executable command. Will exit when it hits the first syntax error
+
 ## php-lint
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-lint
 ```
@@ -39,7 +52,7 @@ A bash script that runs `php -l` against stage files that are php. Assumes `php`
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-lint-all
 ```
@@ -48,17 +61,17 @@ A systems hook that just runs `php -l` against stage files that have the `.php` 
 
 ## php-unit
 
-
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-unit
 ```
 
 A bash script that will run the appropriate phpunit executable. It will assume
-  - Find the executable to run at either `vendor/bin/phpunit`, `phpunit` or `php phpunit.phar` (in that exact order).
-  - There is already a `phpunit.xml` in the root of the repo
+
+- Find the executable to run at either `vendor/bin/phpunit`, `phpunit` or `php phpunit.phar` (in that exact order).
+- There is already a `phpunit.xml` in the root of the repo
 
 Note in its current state, it will run the whole PHPUnit test as along as `.php` file was committed.
 
@@ -66,7 +79,7 @@ Note in its current state, it will run the whole PHPUnit test as along as `.php`
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-cs
     files: \.(php)$
@@ -85,12 +98,13 @@ If you have multiple standards or a comma in your `args` property, escape the co
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-cs
     files: \.(php)$
     args: [--standard=PSR1 -p]
 ```
+
 Similar pattern as the php-cs hook. A bash script that will run the appropriate [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer) executable and will try to fix errors if it can using phpcbf.
 
 It will assume that there is a valid PHP Code Beautifier and Fixer executable at these locations, `vendor/bin/phpcbf`, `phpcbf` or `php phpcbf.phar` (in that exact order).
@@ -101,7 +115,7 @@ If you have multiple standards or a comma in your `args` property, escape the co
 
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-cs
     files: \.(php)$
@@ -111,15 +125,16 @@ If you have multiple standards or a comma in your `args` property, escape the co
 To install PHP Codesniffer (phpcs & phpcbf), follow the [recommended steps here](https://github.com/squizlabs/PHP_CodeSniffer#installation).
 
 ## php-cs-fixer
+
 ```yaml
 - repo: git@github.com:bskiefer/pre-commit-php.git
-  sha: 1.1.0
+  sha: 1.6
   hooks:
   - id: php-cs-fixer
     files: \.(php)$
     args: [--level=PSR2]
 ```
+
 Similar pattern as the php-cs hook. A bash script that will run the appropriate [PHP Coding Standards Fixer](http://cs.sensiolabs.org/) executable and to fix errors according to the configuration. It accepts all of the args from the `php-cs-fixer` command, in particular the `--level`, `--config`, and `--config-file` options.
 
 The tool will fail a build when it has made changes to the staged files. This allows a developer to do a `git diff` and examine the changes that it has made. Remember that you may omit this if needed with a `SKIP=php-cs-fixer git commit`.
-

@@ -41,6 +41,20 @@
   language: script
   files: \.php$
 
+- id: php-ecs
+  name: PHP Easy Coding Standards
+  description: Run php easy coding standards against all staged files.
+  entry: pre_commit_hooks/php-ecs.sh
+  language: script
+  files: \.php$
+
+- id: blade-formatter
+  name: PHP Easy Coding Standards
+  description: Blade template formatter for Laravel that respects readability
+  entry: pre_commit_hooks/blade.sh
+  language: script
+  files: \.blade\.php$
+
 - id: composer-normalize-fix
   name: Composer Formatter
   description: Check for valid composer.json and format
