@@ -28,7 +28,7 @@ blade_global_command=$(which blade-formatter)
 
 echo "${blade_global_command}"
 
-if test -z "$blade_global_command"; then
+if [! -f "$blade_global_command"]; then
     echo -en "No valid PHP blade executable found!\n\t${msg_color_blue}npm install -g blade-formatter\n"
     exit 1
 else
